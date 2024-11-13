@@ -35,6 +35,8 @@ class RPSSP: UIViewController {
     
     var computerPoints2 = 0
     
+    var num = 1
+    
     var round = 1
     
     var wins = 0
@@ -50,6 +52,31 @@ class RPSSP: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func choiceController(_ sender: UISegmentedControl) {
+        var choiceNum = (sender as AnyObject).selectedSegmentIndex
+        if choiceNum == 0 {
+            playerSelection = "Rock"
+        }
+        else if choiceNum == 1 {
+            playerSelection = "Paper"
+        }
+        else if choiceNum == 2 {
+            playerSelection = "Scissors"
+        }
+    }
+    
+    @IBAction func shootButton(_ sender: UIButton) {
+        num = Int.random(in: 1...3)
+        if num == 1 {
+            
+        }
+        else if num == 2 {
+            
+        }
+        else if num == 3 {
+            
+        }
+    }
 
     /*
     // MARK: - Navigation
