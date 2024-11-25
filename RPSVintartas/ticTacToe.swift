@@ -51,7 +51,7 @@ class ticTacToe: UIViewController {
     
     var _31 = "Empty"
     
-    var _122 = "Empty"
+    var _12 = "Empty"
     
     var _22 = "Empty"
     
@@ -77,18 +77,24 @@ class ticTacToe: UIViewController {
     
     let yWon = UIAlertController(title: "O won!", message: "Congrats", preferredStyle: .alert)
     
+    let tie = UIAlertController(title: "Tie...", message: "Better than a loss I guess.", preferredStyle: .alert)
+    
     let ok = UIAlertAction(title: "Ok", style: .default)
     
     func check() {
-        if (_11 == "X" && _21 == "X" && _31 == "X") || (_122 == "X" && _22 == "X" && _32 == "X") || (_13 == "X" && _23 == "X" && _33 == "X") || (_11 == "X" && _122 == "X" && _13 == "X") || (_21 == "X" && _22 == "X" && _23 == "X") || (_31 == "X" && _32 == "X" && _33 == "X") || (_11 == "X" && _22 == "X" && _33 == "X") || (_31 == "X" && _22 == "X" && _13 == "X") {
+        if (_11 == "X" && _21 == "X" && _31 == "X") || (_12 == "X" && _22 == "X" && _32 == "X") || (_13 == "X" && _23 == "X" && _33 == "X") || (_11 == "X" && _12 == "X" && _13 == "X") || (_21 == "X" && _22 == "X" && _23 == "X") || (_31 == "X" && _32 == "X" && _33 == "X") || (_11 == "X" && _22 == "X" && _33 == "X") || (_31 == "X" && _22 == "X" && _13 == "X") {
             present(xWon, animated: true)
             xPoints = xPoints + 1
             resetBoard()
         }
-        else if (_11 == "Y" && _21 == "Y" && _31 == "Y") || (_122 == "Y" && _22 == "Y" && _32 == "Y") || (_13 == "Y" && _23 == "Y" && _33 == "Y") || (_11 == "Y" && _122 == "Y" && _13 == "Y") || (_21 == "Y" && _22 == "Y" && _23 == "Y") || (_31 == "Y" && _32 == "Y" && _33 == "Y") || (_11 == "Y" && _22 == "Y" && _33 == "Y") || (_31 == "Y" && _22 == "Y" && _13 == "Y"){
+        else if (_11 == "Y" && _21 == "Y" && _31 == "Y") || (_12 == "Y" && _22 == "Y" && _32 == "Y") || (_13 == "Y" && _23 == "Y" && _33 == "Y") || (_11 == "Y" && _12 == "Y" && _13 == "Y") || (_21 == "Y" && _22 == "Y" && _23 == "Y") || (_31 == "Y" && _32 == "Y" && _33 == "Y") || (_11 == "Y" && _22 == "Y" && _33 == "Y") || (_31 == "Y" && _22 == "Y" && _13 == "Y"){
             present(yWon, animated: true)
             oPoints = oPoints + 1
             resetBoard()
+        }
+        else if _11 != "Empty" && _12 != "Empty" && _13 != "Empty" && _21 != "Empty" && _22 != "Empty" && _23 != "Empty" && _31 != "Empty" && _32 != "Empty" && _33 != "Empty"{
+            resetBoard()
+            present(tie, animated: true)
         }
         xPointsLabel.text = "X: \(xPoints)"
         oPointsLabel.text = "O: \(oPoints)"
@@ -98,7 +104,7 @@ class ticTacToe: UIViewController {
         _11 = "Empty"
         _21 = "Empty"
         _31 = "Empty"
-        _122 = "Empty"
+        _12 = "Empty"
         _22 = "Empty"
         _32 = "Empty"
         _13 = "Empty"
@@ -123,12 +129,13 @@ class ticTacToe: UIViewController {
         _33Image.isHidden = true
         _33Outlet.isHidden = false
         turn = "X"
+        check()
     }
     
     func reset() {
-        resetBoard()
         xPoints = 0
         oPoints = 0
+        resetBoard()
     }
     
     override func viewDidLoad() {
@@ -136,6 +143,7 @@ class ticTacToe: UIViewController {
         resetBoard()
         xWon.addAction(ok)
         yWon.addAction(ok)
+        tie.addAction(ok)
     }
     
     @IBAction func _11Button(_ sender: UIButton) {
@@ -184,7 +192,7 @@ class ticTacToe: UIViewController {
     }
     
     @IBAction func _12FixButton(_ sender: Any) {
-        _122 = turn
+        _12 = turn
         _12FixOutlet.isHidden = true
         _12FixImage.isHidden = false
         if turn == "X" {
