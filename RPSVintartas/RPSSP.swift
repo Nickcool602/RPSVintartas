@@ -54,6 +54,12 @@ class RPSSP: UIViewController {
     let computerWinAlert = UIAlertController(title: "You lose...", message: "Unfortunate.", preferredStyle: .alert)
     let computerWinClose = UIAlertAction(title: "OK", style: .default)
     
+    let resetCon = UIAlertController(title: "Confirmation", message: "Are you sure you want to reset RPS?", preferredStyle: .alert)
+    
+    let cancel = UIAlertAction(title: "No", style: .default)
+    
+    let cont = UIAlertAction(title: "Yes", style: .default, handler: nil)
+    
     func reset() {
         winnerLabel.text = "Winner"
         wins = 0
